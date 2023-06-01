@@ -3,7 +3,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from utils.csvtools import *
 from config.configure import *
+
 
 class reverseGeocoder():
     def __init__(self):
@@ -18,7 +20,23 @@ class reverseGeocoder():
         address = self.browser.find_element_by_class_name("widget-pane-link").text
         return address
     
-    '''self.browser.get(url)
-        WebDriverWait(self.browser, 100).until(EC.presence_of_element_located((By.CLASS_NAME, "LCF4w")))
-        address = self.browser.find_element(By.CLASS_NAME, "LCF4w")
-        return address'''
+        '''self.browser.get(url)
+            WebDriverWait(self.browser, 100).until(EC.presence_of_element_located((By.CLASS_NAME, "LCF4w")))
+            address = self.browser.find_element(By.CLASS_NAME, "LCF4w")
+            return address'''
+    
+    def update_address(self, filename):
+        csv = csvtools()
+        data = csv.read(filename)
+        for i in range(len(data)):
+            if i == 0:
+                data[i].append("Address")
+            else:
+                data[i].append(self.get_address(data[i][0], data[i][1]))
+        csv.write(filename, data)
+
+
+    def close(self):
+        self.browser.close()
+        self.browser.quit()
+
