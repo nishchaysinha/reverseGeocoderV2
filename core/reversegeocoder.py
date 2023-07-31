@@ -8,6 +8,7 @@ from config.configure import *
 
 
 class reverseGeocoder():
+    initial_state=True
     def __init__(self):
         conf = config()
         self.options = webdriver.ChromeOptions().add_argument('headless').add_argument('no-sandbox').add_argument('disable-dev-shm-usage')
@@ -16,8 +17,15 @@ class reverseGeocoder():
     
     def get_address(self, lat, lon):
         url = self.baseurl + str(lat) + "+" + str(lon)
-        self.browser.get(url)
-        address = self.browser.find_element_by_class_name("widget-pane-link").text
+
+        #Initial
+        if self.initial_state==True:
+            self.browser.get(url)
+            address = self.browser.find_element_by_class_name("widget-pane-link").text
+            self.initial_state=False
+        else: #Not Initial
+            self.browser.update(url)
+            address = self.browser.find_element_by_class_name("widget-pane-link").text
         return address
     
         '''self.browser.get(url)
