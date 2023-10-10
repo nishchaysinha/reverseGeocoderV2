@@ -38,4 +38,4 @@ so a reverse geocoder gives a locations address when its given the locations lat
 - Ideation on what to improve
 - Plan to Rectify flaws in v1
 
-[V1 Source Code](https://www.notion.so/V1-Source-Code-8dfdb71f80b84b38a6ceadca6c20b001?pvs=21)
+[V1 Source Code](https://github.com/nishchaysinha/GMAPs-reversegeocoder)
