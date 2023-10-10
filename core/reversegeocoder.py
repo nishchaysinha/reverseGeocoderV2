@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from utils.csvtools import *
+import utils.csv as MonkeyWriter
 from config.configure import *
 
 
@@ -34,17 +34,21 @@ class reverseGeocoder():
             return address'''
     
     def update_address(self, filename):
-        csv = csvtools()
-        data = csv.read(filename)
+        mcsv = MonkeyWriter.csvController()
+        data = mcsv.read(filename)
         for i in range(len(data)):
             if i == 0:
                 data[i].append("Address")
             else:
                 data[i].append(self.get_address(data[i][0], data[i][1]))
-        csv.write(filename, data)
+        mcsv.write(filename, data)
 
 
     def close(self):
         self.browser.close()
         self.browser.quit()
 
+if __name__ == "__main__":
+    rg = reverseGeocoder()
+    rg.update_address("test.csv")
+    rg.close()
