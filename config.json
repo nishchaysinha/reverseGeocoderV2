@@ -1,5 +1,4 @@
 {
-    "src_file": "Enter CSV File Name",
-    "driver_path" : "Enter Driver Path"
-
+    "src_file": "Muscat_Data.csv",
+    "driver_path": "/usr/local/bin/chromedriver"
 }

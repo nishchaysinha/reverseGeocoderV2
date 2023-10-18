@@ -3,8 +3,8 @@ from utils.jsontools import *
 
 def config():
     conf = parse_json("config.json")
-    if conf["filename"]=="":
-        conf["filename"] = str(input("Enter the Filename:  ")).strip()
+    if conf["src_file"]=="":
+        conf["src_file"] = str(input("Enter the Filename:  ")).strip()
         write_json("config.json", conf)
     
     if conf["driver_path"]=="":
